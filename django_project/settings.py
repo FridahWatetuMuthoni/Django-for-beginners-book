@@ -26,15 +26,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    #installed apps
+    "whitenoise.runserver_nostatic",
+    
     #custom apps
     'pages.apps.PagesConfig',
     'blog.apps.BlogConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    #added middleware
+    "whitenoise.middleware.WhiteNoiseMiddleware", #added
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -118,6 +124,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #custom settings
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+
+
+# static files production settings
+
+STATIC_ROOT = BASE_DIR / 'statcfiles'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # new
+
+LOGIN_REDIRECT_URL = "blog:blog_home" 
+LOGOUT_REDIRECT_URL = "blog:blog_home" 
+#EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # new
+
+
+
+

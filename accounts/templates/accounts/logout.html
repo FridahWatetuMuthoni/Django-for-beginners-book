@@ -1,0 +1,12 @@
+{% entends '../base.html' %} {% block content %}
+<div>
+  <section>
+    <h1>You have been logged out</h1>
+    <div>
+      <strong>
+        <a href="{% url 'accounts:login' %}">Login Again</a>
+      </strong>
+    </div>
+  </section>
+</div>
+{% endblock %}

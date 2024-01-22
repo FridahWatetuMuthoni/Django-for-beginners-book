@@ -78,4 +78,5 @@ class BlogTests(TestCase):
         response = self.client.post(reverse('blog:delete_post', kwargs={'pk':1}))
         self.assertEqual(response.status_code, 302)
         
+        
     
